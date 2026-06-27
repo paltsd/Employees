@@ -1,0 +1,1500 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نموذج تقييم الأداء نصف السنوي – جمعية فلسطين الغد</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap');
+
+  :root{
+    --ink:#1c2b27;
+    --paper:#f6f3ea;
+    --olive:#3c5d4f;
+    --olive-dark:#26392f;
+    --clay:#b3552f;
+    --clay-light:#e8c9a8;
+    --gold:#c79a3f;
+    --line:#d7cfb8;
+    --card:#fffdf7;
+    --danger:#a23b2e;
+    --ok:#3c5d4f;
+    --radius:10px;
+    --shadow:0 2px 10px rgba(28,43,39,.08);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans Arabic','Tajawal',sans-serif;
+    line-height:1.65;
+    min-height:100vh;
+  }
+  .app{max-width:840px;margin:0 auto;padding:0 18px 80px;}
+
+  /* ===== Header ===== */
+  .masthead{
+    background:linear-gradient(160deg,var(--olive-dark),var(--olive) 70%);
+    color:#f3efe2;
+    padding:38px 26px 30px;
+    border-radius:0 0 22px 22px;
+    margin:0 -18px 26px;
+    position:relative;
+    overflow:hidden;
+  }
+  .masthead::after{
+    content:"";
+    position:absolute; inset:0;
+    background:
+      radial-gradient(circle at 88% 10%, rgba(199,154,63,.25), transparent 45%),
+      repeating-linear-gradient(135deg, rgba(255,255,255,.035) 0 2px, transparent 2px 14px);
+    pointer-events:none;
+  }
+  .masthead .eyebrow{
+    font-size:13px; letter-spacing:.06em; color:var(--gold);
+    font-weight:600; position:relative; z-index:1;
+  }
+  .masthead h1{
+    font-family:'Tajawal',sans-serif;
+    font-weight:900;
+    font-size:26px;
+    margin:8px 0 6px;
+    position:relative; z-index:1;
+  }
+  .masthead .sub{
+    font-size:14.5px; color:#dfe6df; position:relative; z-index:1;
+  }
+  .masthead .period{
+    display:inline-block; margin-top:14px;
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.25);
+    padding:6px 14px; border-radius:20px;
+    font-size:13px; position:relative; z-index:1;
+  }
+
+  /* ===== Progress ===== */
+  .progress-wrap{margin:0 0 22px;}
+  .progress-track{height:6px; background:var(--line); border-radius:6px; overflow:hidden;}
+  .progress-fill{height:100%; background:linear-gradient(90deg,var(--clay),var(--gold)); width:0%; transition:width .35s ease;}
+  .progress-label{font-size:12.5px; color:#6b6555; margin-top:6px; display:flex; justify-content:space-between;}
+
+  /* ===== Card / Section ===== */
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:26px 24px;
+    margin-bottom:18px;
+  }
+  .card-title{
+    font-family:'Tajawal',sans-serif;
+    font-weight:700; font-size:18.5px; color:var(--olive-dark);
+    margin:0 0 6px; display:flex; align-items:center; gap:10px;
+  }
+  .card-title .dot{width:8px;height:8px;border-radius:50%; background:var(--clay); flex:none;}
+  .card-help{
+    font-size:13.5px; color:#5b5746; background:#f1ecdb; border-right:3px solid var(--gold);
+    padding:10px 14px; border-radius:6px; margin:10px 0 18px;
+  }
+  .card-help.warn{ border-right-color:var(--danger); background:#f6e9e4; color:#7a2e22; }
+  .card-help.good{ border-right-color:var(--olive); background:#eaf0ec; color:var(--olive-dark); }
+
+  /* ===== Form elements ===== */
+  .field{margin-bottom:18px;}
+  .field:last-child{margin-bottom:0;}
+  label.q{
+    display:block; font-weight:600; font-size:14.5px; color:var(--ink);
+    margin-bottom:8px;
+  }
+  label.q .req{color:var(--clay); margin-right:4px;}
+  input[type=text], input[type=email], input[type=tel], textarea, select{
+    width:100%; font-family:inherit; font-size:14.5px;
+    padding:11px 13px; border:1.5px solid var(--line); border-radius:8px;
+    background:#fffefb; color:var(--ink); transition:border-color .15s, box-shadow .15s;
+  }
+  textarea{min-height:84px; resize:vertical;}
+  input:focus, textarea:focus, select:focus{
+    outline:none; border-color:var(--olive); box-shadow:0 0 0 3px rgba(60,93,79,.13);
+  }
+  select{appearance:none; cursor:pointer;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%233c5d4f'%3E%3Cpath fill-rule='evenodd' d='M5.23 7.21a.75.75 0 011.06.02L10 11.06l3.71-3.83a.75.75 0 111.08 1.04l-4.25 4.39a.75.75 0 01-1.08 0L5.21 8.27a.75.75 0 01.02-1.06z'/%3E%3C/svg%3E");
+    background-repeat:no-repeat; background-position:left 12px center; padding-left:34px;
+  }
+  .help-text{font-size:12.5px; color:#857f6a; margin-top:5px;}
+
+  /* radio / checkbox groups */
+  .opt-group{display:flex; flex-direction:column; gap:8px;}
+  .opt{
+    display:flex; align-items:flex-start; gap:10px; padding:10px 12px;
+    border:1.5px solid var(--line); border-radius:8px; cursor:pointer;
+    background:#fffefb; transition:border-color .15s, background .15s;
+    font-size:14px;
+  }
+  .opt:hover{border-color:var(--olive);}
+  .opt input{accent-color:var(--olive); width:17px; height:17px; margin-top:1px; flex:none;}
+  .opt.checked{border-color:var(--olive); background:#eef3ee;}
+
+  /* scale group */
+  .scale-block{margin-bottom:16px; padding-bottom:16px; border-bottom:1px dashed var(--line);}
+  .scale-block:last-child{border-bottom:none; margin-bottom:0; padding-bottom:0;}
+  .scale-q{font-size:14px; margin-bottom:10px; color:var(--ink);}
+  .scale-row{display:flex; gap:6px; flex-wrap:wrap;}
+  .scale-opt{
+    flex:1; min-width:54px; text-align:center; padding:9px 4px;
+    border:1.5px solid var(--line); border-radius:8px; cursor:pointer;
+    font-size:13px; color:#5b5746; background:#fffefb; transition:.15s;
+  }
+  .scale-opt b{display:block; font-size:15px; color:var(--olive-dark);}
+  .scale-opt:hover{border-color:var(--olive);}
+  .scale-opt.checked{background:var(--olive); border-color:var(--olive); color:#fff;}
+  .scale-opt.checked b{color:#fff;}
+  .scale-legend{
+    display:flex; justify-content:space-between; font-size:11.5px; color:#9a936f;
+    margin:-4px 0 14px; padding:0 2px;
+  }
+
+  /* nav buttons */
+  .nav-row{display:flex; justify-content:space-between; gap:12px; margin-top:6px;}
+  button{
+    font-family:inherit; font-size:14.5px; font-weight:600;
+    padding:12px 22px; border-radius:8px; border:none; cursor:pointer;
+    transition:transform .1s, box-shadow .15s; display:inline-flex; align-items:center; gap:8px;
+  }
+  button:active{transform:scale(.97);}
+  .btn-primary{background:var(--clay); color:#fff; box-shadow:0 3px 0 #8c3e22;}
+  .btn-primary:hover{background:#9c4626;}
+  .btn-primary:disabled{background:#c9b9a4; box-shadow:none; cursor:not-allowed;}
+  .btn-ghost{background:transparent; color:var(--olive-dark); border:1.5px solid var(--line);}
+  .btn-ghost:hover{border-color:var(--olive);}
+  .btn-submit{background:var(--olive); color:#fff; box-shadow:0 3px 0 #1c2b22;}
+  .btn-submit:hover{background:#324a3f;}
+  .btn-wide{width:100%; justify-content:center;}
+
+  .error-msg{color:var(--danger); font-size:13px; margin-top:6px; display:none;}
+  .field.invalid input, .field.invalid select, .field.invalid textarea{border-color:var(--danger);}
+  .field.invalid .error-msg{display:block;}
+
+  /* role / department picker cards */
+  .role-grid{display:flex; flex-direction:column; gap:10px;}
+  .role-card{
+    border:1.5px solid var(--line); border-radius:10px; padding:14px 16px;
+    cursor:pointer; background:#fffefb; transition:.15s;
+  }
+  .role-card:hover{border-color:var(--olive); background:#f3f7f1;}
+  .role-card.checked{border-color:var(--clay); background:#fbf0e8;}
+  .role-card .rt{font-weight:700; font-size:14.5px; color:var(--olive-dark); display:flex; align-items:center; gap:8px;}
+  .role-card .rt .badge{font-size:11px; background:var(--gold); color:#3a2c0c; padding:2px 8px; border-radius:20px; font-weight:700;}
+  .role-card .rd{font-size:12.5px; color:#857f6a; margin-top:3px;}
+
+  /* login screen */
+  .login-wrap{display:flex; flex-direction:column; align-items:center; padding:18px 0 4px;}
+  .id-input{
+    width:100%; max-width:320px; text-align:center; letter-spacing:2px;
+    font-size:20px; font-weight:700; padding:16px; border:2px solid var(--line);
+    border-radius:10px; background:#fffefb; color:var(--olive-dark);
+  }
+  .id-input:focus{outline:none; border-color:var(--olive); box-shadow:0 0 0 4px rgba(60,93,79,.12);}
+  .login-error{
+    color:var(--danger); background:#f6e9e4; border:1.5px solid #e3b9ad;
+    padding:10px 14px; border-radius:8px; font-size:13.5px; margin-top:14px;
+    max-width:360px; text-align:center; display:none;
+  }
+  .welcome-tag{
+    display:inline-flex; align-items:center; gap:8px; background:#eef3ee;
+    border:1px solid var(--olive); color:var(--olive-dark); font-size:13.5px;
+    font-weight:600; padding:7px 14px; border-radius:20px; margin-bottom:14px;
+  }
+  .welcome-tag .ok-dot{width:7px;height:7px;border-radius:50%; background:var(--olive);}
+
+  /* success screen */
+  .success{text-align:center; padding:50px 20px;}
+  .success .check{
+    width:64px; height:64px; border-radius:50%; background:var(--olive);
+    color:#fff; display:flex; align-items:center; justify-content:center;
+    font-size:32px; margin:0 auto 18px;
+  }
+  .success h2{font-family:'Tajawal',sans-serif; color:var(--olive-dark);}
+  .success p{color:#5b5746; font-size:14.5px;}
+
+  .hidden{display:none !important;}
+
+  @media (max-width:600px){
+    .masthead{padding:30px 18px 24px;}
+    .masthead h1{font-size:21px;}
+    .card{padding:20px 16px;}
+    .scale-opt{font-size:12px; padding:8px 2px;}
+  }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <div class="masthead">
+    <div class="eyebrow">جمعية فلسطين الغد للتنمية المجتمعية</div>
+    <h1>نموذج تقييم الأداء نصف السنوي للموظفين</h1>
+    <div class="sub">الدخول برقم الهوية — كل مسؤول يقيّم الموظفين ضمن نطاق إشرافه المباشر فقط</div>
+    <div class="period">الفترة: 01/01/2026 – 30/06/2026</div>
+  </div>
+
+  <div class="progress-wrap" id="progressWrap">
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-label"><span id="progressText">تسجيل الدخول</span><span id="progressPct">0%</span></div>
+  </div>
+
+  <div id="formRoot"></div>
+
+  <div class="success hidden" id="successScreen">
+    <div class="check">✓</div>
+    <h2>تم إرسال التقييم بنجاح</h2>
+    <p>شكراً لك على تعبئة النموذج بدقة وموضوعية. تم حفظ بياناتك بنجاح.</p>
+    <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:14px;">
+      <button class="btn-ghost" id="undoLastBtn">↺ تراجع عن هذا التقييم</button>
+      <button class="btn-submit" id="continueEvalBtn">تقييم موظف آخر ←</button>
+      <button class="btn-ghost" onclick="logout()">تسجيل خروج / مستخدم آخر</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+/* ============================================================
+   DATA: قوائم الموظفين الفعلية + خريطة أرقام الهوية
+   ============================================================ */
+const EMP = {
+  projects: ['جمال عبدالهادي عبدالحميد سلطان','رنين معين حسين صالحة','رواد عبد العزيز مبارك','محمد فايز عطايا صيام','وسيم جهاد جميل صيام'],
+  media: ['حسن نبيل حسن أبو عرجة','عماد جمال عبد الناصر أبو عيطة','هيثم جهاد جميل صيام','احمد محمد عزمي خلف','ضياء الدين يوسف محمد البطش'],
+  field: ['أدهم جهاد جميل صيام','عبد الرحمن أيمن سعدي عطا الله','عبدالله احمد سميح عطالله','عماد طالب محمد ابوسيدو','منتصر خضر عجور','لؤي أيمن عارف حرزالله','احمد رامي أبو غوش','عبد الغني رشيد شعت','جميل باسم جميل صيام','راجح علي راجح التري'],
+  psychosocial: ['أسامة فتحي العالول','حمادة محمد موسى اشبير','رائدة حسن عبد الحميد أبو غبن','طارق زياد محمد الشوا','علاء الدين عبد الفتاح حميد','محمود محمد فضل حسن الشقرة','رائد نضال موسى الاشقر (منشط)','شهد أسامة خميس مشتهى (منشطة)','شهد ماهر سعيد أبو نعمة (منشطة)','حنان ناصر خضر جحا (منشطة)','سعد منهل سعد أبو كرش (منشط)','علي احمد محمد نصر (منشط)'],
+  managersRegular: ['إياد محمد سعيد محمود سعدالله','أحمد سعدي علي عجور','سناء صباح سعود ثابت','وفاء علاء الدين محمود احمد'], // مدراء عاديون يقيّمهم حازم فقط
+  triple: ['عبد الرحمن عماد جميل صيام','محمد رياض محمود سليمان','ياسمين عماد سعيد خلف'] // التقييم الثلاثي
+};
+EMP.all = [...new Set([
+  ...EMP.projects, ...EMP.media, ...EMP.field, ...EMP.psychosocial,
+  ...EMP.managersRegular, ...EMP.triple
+])];
+
+const DEPTS_LIST = [
+  {key:'projects', label:'دائرة المشاريع', employees: EMP.projects},
+  {key:'media', label:'دائرة العلاقات العامة والإعلام', employees: EMP.media},
+  {key:'field', label:'الموظفون الميدانيون', employees: EMP.field},
+  {key:'psychosocial', label:'قسم الدعم النفسي والأنشطة', employees: EMP.psychosocial}
+];
+const DEPTS = ['دائرة المشاريع','دائرة العلاقات العامة والإعلام','الموظفون الميدانيون','قسم الدعم النفسي والأنشطة','المالية','السكرتارية','الشؤون القانونية','الإدارة'];
+
+/* ---- خريطة أرقام الهوية → بيانات المستخدم والصلاحيات ----
+   role values:
+   - dept_manager   : مدير دائرة عادي (مشاريع/إعلام+ميداني/دعم نفسي)
+   - hr_only        : محمد رياض — شؤون الموظفين فقط
+   - panelist       : عماد / منال / حازم — يقيّمون التقييم الثلاثي + المدراء (حازم فقط) + المتابعة والتقييم + الاعتماد
+*/
+const ID_DIRECTORY = {
+  '905259511': { name:'إياد محمد سعيد محمود سعدالله', title:'مدير دائرة المشاريع', role:'dept_manager', dept:'projects' },
+  '802134387': { name:'أحمد سعدي علي عجور', title:'مدير دائرة العلاقات العامة والإعلام', role:'dept_manager', dept:'media_field' },
+  '916805559': { name:'سناء صباح سعود ثابت', title:'مديرة الدعم النفسي والأنشطة', role:'dept_manager', dept:'psychosocial' },
+  '801728148': { name:'محمد رياض محمود سليمان', title:'مدير دائرة الموظفين والشؤون القانونية', role:'hr_only' },
+  '800812216': { name:'عماد سليمان عبدالله قاسم', title:'استشاري عام', role:'panelist', panelRole:'emad', canEvalManagers:false, canEvalRegular:true },
+  '927397869': { name:'منال صيام', title:'رئيسة مجلس الإدارة', role:'panelist', panelRole:'manal', canEvalManagers:false, canEvalRegular:false },
+  '801519463': { name:'حازم علي حسن عفانة', title:'المدير الإداري', role:'panelist', panelRole:'hazem', canEvalManagers:true, canEvalRegular:true }
+};
+
+/* ============================================================
+   GOOGLE SHEETS SYNC
+   بعد نشر كود Apps Script (المرفق في التعليمات) كـ Web App،
+   ضع رابط الـ Web App هنا بدلاً من القيمة المؤقتة.
+   ============================================================ */
+const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwSd8_Gqytmx_UefwGgozK1Ig2eC4X9r0viBAx7mBcZRJx5scs5xsdVZb62htDzAMl8/exec';
+
+function empCategory(name){
+  if(EMP.projects.includes(name)) return 'projects';
+  if(EMP.media.includes(name)) return 'media';
+  if(EMP.field.includes(name)) return 'field';
+  if(EMP.psychosocial.includes(name)) return 'psychosocial';
+  if(EMP.triple.includes(name)) return 'triple';
+  if(EMP.managersRegular.includes(name)) return 'managersRegular';
+  return null;
+}
+const DEPT_LABEL = {
+  projects:'دائرة المشاريع',
+  media:'دائرة العلاقات العامة والإعلام',
+  field:'الموظفون الميدانيون',
+  psychosocial:'قسم الدعم النفسي والأنشطة'
+};
+
+/* ---- خريطة الاسم → المسمى الوظيفي (من عمود "الصفة" في كشف الدوائر) ----
+   لإفراغ "الصفة" في الإكسل الأصلي، تم وضع مسمى افتراضي منطقي بدل حقل خالٍ. */
+const TITLE_BY_NAME = {
+  'جمال عبدالهادي عبدالحميد سلطان':'منسق مشاريع',
+  'رنين معين حسين صالحة':'منسق مشاريع',
+  'رواد عبد العزيز مبارك':'دائرة الأيتام',
+  'محمد فايز عطايا صيام':'منسق مشاريع',
+  'وسيم جهاد جميل صيام':'منسق مشاريع',
+  'حسن نبيل حسن أبو عرجة':'أرشفة البيانات',
+  'عماد جمال عبد الناصر أبو عيطة':'تصوير فيديو',
+  'هيثم جهاد جميل صيام':'تصوير فوتو',
+  'احمد محمد عزمي خلف':'تصوير فوتو',
+  'ضياء الدين يوسف محمد البطش':'تكنولوجيا المعلومات (IT)',
+  'أدهم جهاد جميل صيام':'موظف ميداني',
+  'عبد الرحمن أيمن سعدي عطا الله':'موظف ميداني',
+  'عبدالله احمد سميح عطالله':'موظف ميداني',
+  'عماد طالب محمد ابوسيدو':'موظف ميداني',
+  'منتصر خضر عجور':'موظف ميداني',
+  'لؤي أيمن عارف حرزالله':'موظف ميداني',
+  'احمد رامي أبو غوش':'موظف ميداني',
+  'عبد الغني رشيد شعت':'موظف ميداني',
+  'جميل باسم جميل صيام':'موظف ميداني',
+  'راجح علي راجح التري':'موظف ميداني',
+  'أسامة فتحي العالول':'أخصائي دعم نفسي',
+  'حمادة محمد موسى اشبير':'أنشطة رياضية',
+  'رائدة حسن عبد الحميد أبو غبن':'مكتبة',
+  'طارق زياد محمد الشوا':'المسرح',
+  'علاء الدين عبد الفتاح حميد':'دائرة',
+  'محمود محمد فضل حسن الشقرة':'أنشطة رياضية',
+  'رائد نضال موسى الاشقر (منشط)':'منشط أنشطة',
+  'شهد أسامة خميس مشتهى (منشطة)':'منشطة أنشطة',
+  'شهد ماهر سعيد أبو نعمة (منشطة)':'منشطة أنشطة',
+  'حنان ناصر خضر جحا (منشطة)':'منشطة أنشطة',
+  'سعد منهل سعد أبو كرش (منشط)':'منشط أنشطة',
+  'علي احمد محمد نصر (منشط)':'منشط أنشطة',
+  'إياد محمد سعيد محمود سعدالله':'مدير دائرة المشاريع',
+  'أحمد سعدي علي عجور':'مدير دائرة العلاقات العامة والإعلام',
+  'عبد الرحمن عماد جميل صيام':'مدير الدائرة المالية',
+  'سناء صباح سعود ثابت':'مديرة الدعم النفسي والأنشطة',
+  'محمد رياض محمود سليمان':'مدير دائرة الموظفين والشؤون القانونية',
+  'وفاء علاء الدين محمود احمد':'مديرة دائرة تكنولوجيا المعلومات',
+  'ياسمين عماد سعيد خلف':'سكرتاريا',
+  'حازم علي حسن عفانة':'المدير الإداري'
+};
+function lookupTitle(name){ return TITLE_BY_NAME[name] || ''; }
+
+const GENERAL_Q = [
+  'يلتزم الموظف بساعات الدوام والمواعيد المعتمدة.',
+  'يلتزم الموظف بالتعليمات والأنظمة الداخلية للجمعية.',
+  'يلتزم الموظف بالتسلسل الإداري في العمل.',
+  'ينفذ الموظف المهام المطلوبة منه بجودة مناسبة.',
+  'ينجز الموظف عمله بدقة وبدون أخطاء متكررة.',
+  'ينجز الموظف المهام المكلف بها ضمن الوقت المحدد.',
+  'يتعاون الموظف مع زملائه والدوائر ذات العلاقة.',
+  'يتقبل الموظف الملاحظات والتوجيهات بشكل مهني.',
+  'يحافظ الموظف على سرية المعلومات والوثائق.',
+  'يحافظ الموظف على صورة الجمعية وسمعتها.'
+];
+const FINAL_RECO = ['استمرار دون ملاحظات','استمرار مع توجيهات تطويرية','تدريب وتطوير','متابعة أداء','إعادة توزيع مهام','إجراء إداري'];
+const CONTINUE_OPTS = ['نعم','نعم، مع متابعة وتطوير','لا'];
+const HR_Q = [
+  'التزام الموظف بساعات الدوام المعتمدة.','التزام الموظف بإجراءات الحضور والمغادرة.','التزام الموظف بإجراءات الإجازات والمغادرات.',
+  'التزام الموظف بالتعليمات الإدارية الداخلية.','التزام الموظف بالتسلسل الإداري.','مستوى السلوك المهني داخل الجمعية.',
+  'مستوى التعاون مع الإدارة والزملاء.','عدم وجود مخالفات أو ملاحظات إدارية متكررة.','عدم وجود شكاوى إدارية مثبتة بحق الموظف.',
+  'التزام الموظف بصورة الجمعية وقواعد العمل المؤسسي.'
+];
+const ME_Q = [
+  'توجد أدلة كافية على إنجاز الموظف لمهامه.','مخرجات الموظف موثقة وقابلة للتحقق.','يلتزم الموظف برفع التقارير أو النماذج المطلوبة.',
+  'تتطابق التقارير مع الواقع الميداني أو الإداري.','يساهم الموظف في تحقيق مؤشرات المشروع أو القسم.','يلتزم الموظف بجودة البيانات المطلوبة.',
+  'يلتزم الموظف بالمواعيد الخاصة بالتقارير والتوثيق.','يحافظ الموظف على تسلسل منطقي وواضح في التوثيق.','يتجاوب الموظف مع ملاحظات المتابعة والتقييم.',
+  'لا توجد فجوات جوهرية بين الخطة والتنفيذ في نطاق عمله.'
+];
+
+const SPECIAL_QUESTIONS = {
+  projects: ['يلتزم الموظف بخطة المشروع المعتمدة.','يتابع الأنشطة والمخرجات في مواعيدها.','ينسق بفعالية مع الفريق والشركاء.','يلتزم بمتطلبات الممول أو الشريك.','يتابع التحديات الميدانية ويقترح حلولاً مناسبة.','تعكس تقاريره الواقع الفعلي للمشروع.','يساهم في تحقيق مؤشرات المشروع.','يلتزم بتوثيق أنشطة المشروع ومستنداته.','يرفع التقارير المطلوبة في الوقت المحدد.','يتعامل مع ضغوط العمل والميدان بمرونة ومسؤولية.'],
+  media: ['يلتزم الموظف بخطة الإعلام والتوثيق.','يلتزم بالهوية البصرية للجمعية والجهات الداعمة.','يوثق الأنشطة بجودة مناسبة.','يلتزم بسرعة تغطية الأنشطة والأحداث.','يحافظ على أرشفة الصور والفيديوهات والمواد الإعلامية.','ينسق بشكل جيد مع الفرق الميدانية والمشاريع.','يراعي خصوصية المستفيدين ويحافظ على كرامتهم.','يلتزم بتعليمات النشر والموافقة قبل النشر.','يقدم محتوى إعلامياً يعكس رسالة الجمعية بشكل مهني.','يتعامل مع التغطيات الميدانية بمرونة ومسؤولية.'],
+  field: ['يلتزم الموظف بخطة الزيارات أو المهام الميدانية.','يرفع المعلومات من الميدان بدقة ووضوح.','يتعامل مع المستفيدين باحترام ومهنية.','يلتزم بتعليمات السلامة والحركة الميدانية.','يرفع التحديات والملاحظات في الوقت المناسب.','ينسق مع المسؤول المباشر قبل وبعد تنفيذ المهام.','يلتزم بالتوثيق الميداني المطلوب.','يلتزم بالتواجد في المواقع المحددة حسب خطة العمل.','ينقل الواقع الميداني بموضوعية دون مبالغة أو إخفاء.','يتصرف بمسؤولية في الظروف الطارئة أو الحساسة.'],
+  psychosocial: ['ينفذ الموظف الجلسات أو الأنشطة وفق الخطة المعتمدة.','يتعامل مع الأطفال أو المستفيدين بطريقة مهنية وآمنة.','يلتزم بمبادئ السرية والحماية وعدم الإيذاء.','يوثق الجلسات والأنشطة بشكل صحيح.','يرفع الحالات التي تحتاج إلى متابعة عند الحاجة.','ينسق مع الفريق الميداني والإدارة بشكل مناسب.','يساهم في تحقيق أهداف الدعم النفسي والتعافي.','يلتزم باستخدام الأدوات والمواد بطريقة مناسبة.','يدير الجلسات أو الأنشطة بطريقة منظمة وآمنة.','يتعامل مع الحالات الحساسة بحذر ومهنية.'],
+  managers: ['يدير فريق العمل أو نطاق عمله بفعالية ووضوح.','يوزع المهام بعدالة ووفق الاختصاصات.','يتابع أداء الموظفين أو الملفات التابعة له بشكل منتظم.','يرفع التقارير والملاحظات للإدارة في الوقت المناسب.','يتعامل مع المشكلات الداخلية بطريقة مهنية.','يساهم في تطوير عمل دائرته أو قسمه أو ملفه الوظيفي.','يلتزم بقرارات الإدارة والتعليمات المؤسسية.','يحافظ على الانضباط داخل نطاق عمله.','ينسق مع الدوائر الأخرى بما يخدم مصلحة العمل.','يقدم صورة قيادية ومهنية إيجابية داخل الجمعية.'],
+  triple: ['يلتزم الموظف بمهامه ومسؤولياته الوظيفية بدقة.','يدير ملفه أو دائرته بفعالية ووضوح.','يتابع التقارير والمستندات الخاصة بعمله بانتظام.','يرفع الملاحظات والمستجدات للإدارة في الوقت المناسب.','يتعامل مع المشكلات والتحديات بطريقة مهنية.','يساهم في تطوير عمله أو ملفه الوظيفي.','يلتزم بقرارات الإدارة والتعليمات المؤسسية.','يحافظ على الانضباط والسرية في نطاق عمله.','ينسق مع الدوائر والجهات الأخرى بما يخدم مصلحة العمل.','يقدم صورة مهنية إيجابية داخل الجمعية.']
+};
+
+/* ============================================================
+   STATE
+   ============================================================ */
+let state = {
+  page: 'login',
+  currentUser: null,
+  panelMenuChoice: null, // for panelists: 'triple' | 'managers' | 'me' | 'approval'
+  lastSubmission: null   // {sectionKey, evaluatorId, employeeName} for undo
+};
+
+const root = document.getElementById('formRoot');
+
+/* ============================================================
+   SESSION PERSISTENCE (تبقى الجلسة محفوظة عند الريفريش، وتُمحى فقط بتسجيل الخروج
+   أو إغلاق المتصفح/التبويب — sessionStorage)
+   ============================================================ */
+const SESSION_KEY = 'perfEval_session_v1';
+
+function pageKeyForCurrentUser(){
+  const u = state.currentUser;
+  if(!u) return 'login';
+  if(u.role === 'dept_manager') return u.dept;
+  if(u.role === 'hr_only') return 'hr';
+  if(u.role === 'panelist') return state.panelMenuChoice ? ('panel_' + state.panelMenuChoice) : 'panel_menu';
+  return 'login';
+}
+
+function persistSession(){
+  try{
+    sessionStorage.setItem(SESSION_KEY, JSON.stringify({
+      currentUser: state.currentUser,
+      panelMenuChoice: state.panelMenuChoice
+    }));
+  }catch(e){ /* sessionStorage غير متاح — الجلسة لن تُحفظ عند الريفريش */ }
+}
+
+function clearSession(){
+  try{ sessionStorage.removeItem(SESSION_KEY); }catch(e){}
+}
+
+function restoreSession(){
+  try{
+    const raw = sessionStorage.getItem(SESSION_KEY);
+    if(!raw) return false;
+    const data = JSON.parse(raw);
+    if(!data || !data.currentUser) return false;
+    state.currentUser = data.currentUser;
+    state.panelMenuChoice = data.panelMenuChoice || null;
+    state.page = pageKeyForCurrentUser();
+    return true;
+  }catch(e){ return false; }
+}
+
+/* ============================================================
+   GENERIC UI BUILDERS
+   ============================================================ */
+function fieldText(idKey,label,required,help,multiline){
+  return `
+  <div class="field" data-key="${idKey}">
+    <label class="q">${label}${required?'<span class="req">*</span>':''}</label>
+    ${multiline ? `<textarea data-field="${idKey}" placeholder="اكتب هنا...">` + `</textarea>` : `<input type="text" data-field="${idKey}" placeholder="اكتب هنا...">`}
+    ${help?`<div class="help-text">${help}</div>`:''}
+    <div class="error-msg">هذا الحقل مطلوب.</div>
+  </div>`;
+}
+function fieldAutoTitle(idKey,label){
+  return `
+  <div class="field" data-key="${idKey}">
+    <label class="q">${label}<span class="req">*</span></label>
+    <input type="text" data-field="${idKey}" id="${idKey}" readonly placeholder="يُعبّأ تلقائياً عند اختيار الموظف" style="background:#f1ecdb; cursor:not-allowed; color:var(--olive-dark); font-weight:600;">
+    <div class="help-text">يُؤخذ تلقائياً من عمود "الصفة" في كشف الدوائر.</div>
+    <div class="error-msg">يرجى اختيار الموظف أولاً.</div>
+  </div>`;
+}
+function fieldSelect(idKey,label,options,required,help,emptyMsg){
+  return `
+  <div class="field" data-key="${idKey}">
+    <label class="q">${label}${required?'<span class="req">*</span>':''}</label>
+    ${options.length===0
+      ? `<div class="card-help good" style="margin:0;">${emptyMsg || 'لا يوجد حالياً أي موظف متبقٍ بهذه القائمة — جميعهم تم تقييمهم.'}</div>`
+      : `<select data-field="${idKey}">
+          <option value="">— اختر —</option>
+          ${options.map(o=>`<option value="${o}">${o}</option>`).join('')}
+        </select>`}
+    ${help?`<div class="help-text">${help}</div>`:''}
+    <div class="error-msg">يرجى اختيار قيمة.</div>
+  </div>`;
+}
+function fieldRadio(idKey,label,options,required){
+  return `
+  <div class="field" data-key="${idKey}">
+    <label class="q">${label}${required?'<span class="req">*</span>':''}</label>
+    <div class="opt-group" data-radio="${idKey}">
+      ${options.map(o=>`
+        <label class="opt" data-val="${o}">
+          <input type="radio" name="${idKey}" value="${o}">
+          <span>${o}</span>
+        </label>`).join('')}
+    </div>
+    <div class="error-msg">يرجى اختيار إجابة.</div>
+  </div>`;
+}
+function fieldCheckbox(idKey,label,options,required){
+  return `
+  <div class="field" data-key="${idKey}">
+    <label class="q">${label}${required?'<span class="req">*</span>':''}</label>
+    <div class="opt-group" data-checkbox="${idKey}">
+      ${options.map(o=>`
+        <label class="opt" data-val="${o}">
+          <input type="checkbox" name="${idKey}" value="${o}">
+          <span>${o}</span>
+        </label>`).join('')}
+    </div>
+    <div class="error-msg">يرجى اختيار خيار واحد على الأقل.</div>
+  </div>`;
+}
+function scaleGroup(keyPrefix,title,questions,subHelp){
+  return `
+  <div class="field" data-key="${keyPrefix}__group">
+    <div class="card-title" style="font-size:15.5px; margin-bottom:2px;"><span class="dot"></span>${title}</div>
+    ${subHelp?`<div class="help-text" style="margin-bottom:12px;">${subHelp}</div>`:''}
+    <div class="scale-legend"><span>1 ضعيف</span><span>2 يحتاج تحسين</span><span>3 جيد</span><span>4 جيد جداً</span><span>5 ممتاز</span></div>
+    ${questions.map((q,i)=>`
+      <div class="scale-block" data-key="${keyPrefix}__${i}">
+        <div class="scale-q">${q}</div>
+        <div class="scale-row" data-scale="${keyPrefix}__${i}">
+          ${[1,2,3,4,5].map(n=>`<div class="scale-opt" data-val="${n}"><b>${n}</b></div>`).join('')}
+        </div>
+        <div class="error-msg">يرجى اختيار تقييم.</div>
+      </div>`).join('')}
+  </div>`;
+}
+function navRow(isSubmit, showBack, disabled){
+  return `
+  <div class="nav-row">
+    ${showBack ? '<button class="btn-ghost" id="backBtn">→ رجوع</button>' : '<span></span>'}
+    <button class="${isSubmit?'btn-submit':'btn-primary'}" id="nextBtn" ${disabled?'disabled':''}>${isSubmit?'إرسال النموذج ✓':'التالي ←'}</button>
+  </div>`;
+}
+
+function wireInteractions(container){
+  const empSelects = container.querySelectorAll('select[data-field="employeeName"]');
+  empSelects.forEach(sel=>{
+    sel.addEventListener('change', ()=>{
+      const titleInput = container.querySelector('#employeeTitle');
+      if(!titleInput) return;
+      const found = lookupTitle(sel.value);
+      titleInput.value = found || '';
+      titleInput.closest('.field').classList.remove('invalid');
+    });
+  });
+
+  container.querySelectorAll('[data-radio] .opt').forEach(opt=>{
+    opt.addEventListener('click',()=>{
+      const group = opt.closest('[data-radio]');
+      group.querySelectorAll('.opt').forEach(o=>o.classList.remove('checked'));
+      opt.classList.add('checked');
+      opt.querySelector('input').checked = true;
+      opt.querySelector('input').dispatchEvent(new Event('change',{bubbles:true}));
+      clearFieldError(opt.closest('.field'));
+    });
+  });
+  container.querySelectorAll('[data-checkbox] .opt').forEach(opt=>{
+    opt.addEventListener('click',()=>{
+      const input = opt.querySelector('input');
+      input.checked = !input.checked;
+      opt.classList.toggle('checked', input.checked);
+      clearFieldError(opt.closest('.field'));
+    });
+  });
+  container.querySelectorAll('[data-scale]').forEach(row=>{
+    row.querySelectorAll('.scale-opt').forEach(opt=>{
+      opt.addEventListener('click',()=>{
+        row.querySelectorAll('.scale-opt').forEach(o=>o.classList.remove('checked'));
+        opt.classList.add('checked');
+        row.dataset.value = opt.dataset.val;
+        clearFieldError(opt.closest('.field'));
+      });
+    });
+  });
+  container.querySelectorAll('.role-card').forEach(card=>{
+    card.addEventListener('click',()=>{
+      const group = card.closest('[data-role-group]');
+      if(group) group.querySelectorAll('.role-card').forEach(c=>c.classList.remove('checked'));
+      card.classList.add('checked');
+    });
+  });
+}
+function clearFieldError(fieldDiv){ if(fieldDiv) fieldDiv.classList.remove('invalid'); }
+
+function validateAndCollect(container){
+  let valid = true;
+  const collected = {};
+  container.querySelectorAll('.field').forEach(f=>{
+    if(f.closest('.hidden')) return;
+    const key = f.dataset.key;
+    if(key.endsWith('__group')) return;
+    const inputEl = f.querySelector('input[type=text],input[type=email],input[type=tel],textarea,select');
+    if(inputEl){
+      const required = f.querySelector('label.q .req');
+      const val = inputEl.value.trim();
+      if(required && !val){ f.classList.add('invalid'); valid=false; }
+      else { f.classList.remove('invalid'); collected[key]=val; }
+      return;
+    }
+    const radioGroup = f.querySelector('[data-radio]');
+    if(radioGroup){
+      const checked = radioGroup.querySelector('input:checked');
+      const required = f.querySelector('label.q .req');
+      if(required && !checked){ f.classList.add('invalid'); valid=false; }
+      else { f.classList.remove('invalid'); collected[key]= checked?checked.value:null; }
+      return;
+    }
+    const checkGroup = f.querySelector('[data-checkbox]');
+    if(checkGroup){
+      const checked = [...checkGroup.querySelectorAll('input:checked')].map(c=>c.value);
+      const required = f.querySelector('label.q .req');
+      if(required && checked.length===0){ f.classList.add('invalid'); valid=false; }
+      else { f.classList.remove('invalid'); collected[key]=checked; }
+      return;
+    }
+  });
+  container.querySelectorAll('.scale-block').forEach(b=>{
+    if(b.closest('.hidden') || b.dataset.skip==='1') return;
+    const key = b.dataset.key;
+    const row = b.querySelector('[data-scale]');
+    const v = row.dataset.value;
+    if(!v){ b.classList.add('invalid'); valid=false; }
+    else { b.classList.remove('invalid'); collected[key]=Number(v); }
+  });
+  if(!valid){
+    const firstInvalid = container.querySelector('.invalid');
+    if(firstInvalid) firstInvalid.scrollIntoView({behavior:'smooth',block:'center'});
+  }
+  return valid ? collected : null;
+}
+
+/* ============================================================
+   PERSISTENT "ALREADY EVALUATED" TRACKING
+   key format: evaluated::{evaluatorId}::{sectionKey}  → JSON array of names (shared:true)
+   ============================================================ */
+let exclusionCache = {}; // in-memory mirror of loaded lists: {storageKey: [names]}
+
+/* المصدر الأساسي للحفظ هو localStorage (يبقى بعد الريفريش وإغلاق المتصفح أيضاً، على هذا الجهاز).
+   window.storage (لو متاح في بيئة استضافة خاصة) يُستخدم كنسخة إضافية فقط، وليس أساسية. */
+function persistExcludedList(storageKey, list){
+  try{ localStorage.setItem(storageKey, JSON.stringify(list)); }
+  catch(e){ /* localStorage غير متاح في هذا المتصفح */ }
+  try{
+    if(window.storage && typeof window.storage.set === 'function'){
+      window.storage.set(storageKey, JSON.stringify(list), true);
+    }
+  }catch(e){ /* تجاهل — النسخة المحلية محفوظة بالفعل */ }
+}
+
+async function loadExcluded(evaluatorId, sectionKey){
+  const storageKey = `evaluated::${evaluatorId}::${sectionKey}`;
+  if(exclusionCache[storageKey]) return exclusionCache[storageKey];
+  let list = [];
+  try{
+    const raw = localStorage.getItem(storageKey);
+    if(raw) list = JSON.parse(raw);
+  }catch(e){ /* localStorage غير متاح أو القيمة تالفة */ }
+  exclusionCache[storageKey] = list;
+  return list;
+}
+
+async function addExcluded(evaluatorId, sectionKey, employeeName){
+  const storageKey = `evaluated::${evaluatorId}::${sectionKey}`;
+  const list = await loadExcluded(evaluatorId, sectionKey);
+  if(!list.includes(employeeName)) list.push(employeeName);
+  exclusionCache[storageKey] = list;
+  persistExcludedList(storageKey, list);
+}
+
+async function removeExcluded(evaluatorId, sectionKey, employeeName){
+  const storageKey = `evaluated::${evaluatorId}::${sectionKey}`;
+  const list = await loadExcluded(evaluatorId, sectionKey);
+  const idx = list.indexOf(employeeName);
+  if(idx > -1) list.splice(idx,1);
+  exclusionCache[storageKey] = list;
+  persistExcludedList(storageKey, list);
+}
+
+async function filterAvailable(evaluatorId, sectionKey, fullList){
+  const excluded = await loadExcluded(evaluatorId, sectionKey);
+  return fullList.filter(n => !excluded.includes(n));
+}
+
+/* ============================================================
+   LOGIN SCREEN
+   ============================================================ */
+function renderLogin(){
+  document.getElementById('progressWrap').classList.add('hidden');
+  root.innerHTML = `
+    <div class="card">
+      <div class="card-title"><span class="dot"></span>تسجيل الدخول</div>
+      <div class="card-help">أدخل رقم هويتك للتحقق من صلاحيتك والانتقال مباشرة إلى تقييم الموظفين الواقعين ضمن نطاق إشرافك.</div>
+      <div class="login-wrap">
+        <input type="tel" id="idInput" class="id-input" placeholder="رقم الهوية" maxlength="9" inputmode="numeric">
+        <div class="login-error" id="loginError">رقم الهوية غير مسجّل لدى أي مسؤول مباشر. يرجى التأكد من الرقم أو التواصل مع الإدارة.</div>
+        <button class="btn-primary btn-wide" id="loginBtn" style="margin-top:18px; max-width:320px;">دخول ←</button>
+      </div>
+    </div>
+  `;
+  const idInput = document.getElementById('idInput');
+  const loginBtn = document.getElementById('loginBtn');
+  const loginError = document.getElementById('loginError');
+
+  function attemptLogin(){
+    const val = idInput.value.trim();
+    const match = ID_DIRECTORY[val];
+    if(!match){
+      loginError.style.display='block';
+      idInput.style.borderColor = 'var(--danger)';
+      return;
+    }
+    loginError.style.display='none';
+    state.currentUser = { idNumber: val, ...match };
+    state.panelMenuChoice = null;
+    state.page = pageKeyForCurrentUser();
+    persistSession();
+    document.getElementById('progressWrap').classList.remove('hidden');
+    updateProgress();
+    renderPage();
+  }
+  loginBtn.addEventListener('click', attemptLogin);
+  idInput.addEventListener('keydown', e=>{ if(e.key==='Enter') attemptLogin(); });
+  idInput.addEventListener('input', ()=>{ idInput.style.borderColor='var(--line)'; loginError.style.display='none'; });
+  idInput.focus();
+}
+
+function welcomeTag(){
+  const u = state.currentUser;
+  return `<div class="welcome-tag"><span class="ok-dot"></span>${u.name} — ${u.title}</div>`;
+}
+
+/* ============================================================
+   SHARED evaluation body builder
+   ============================================================ */
+function evaluationBodyHTML(opts){
+  return `
+    <div class="card">
+      ${welcomeTag()}
+      <div class="card-title"><span class="dot"></span>${opts.pageTitle}</div>
+      <div class="card-help warn">${opts.pageHelp}</div>
+      ${opts.preFields || ''}
+      ${fieldSelect('employeeName', opts.employeeLabel, opts.employeeList, true, '', opts.emptyMsg)}
+      ${opts.employeeList.length>0 ? fieldAutoTitle('employeeTitle','المسمى الوظيفي للموظف') : ''}
+    </div>
+    ${opts.employeeList.length===0 ? '' : `
+    <div class="card">${scaleGroup('general','أولاً: التقييم العام', GENERAL_Q)}</div>
+    <div class="card">${scaleGroup('special','ثانياً: '+opts.specialTitle, opts.specialQuestions, opts.specialHelp||'')}</div>
+    <div class="card">
+      <div class="card-title"><span class="dot"></span>ثالثاً: ${opts.recommendationTitle}</div>
+      ${fieldText('strengths','أبرز نقاط القوة لدى الموظف',true,'',true)}
+      ${fieldText('improve','أبرز الجوانب التي تحتاج إلى تحسين',true,'',true)}
+      ${fieldRadio('continueRole','هل توصي باستمرار الموظف في نفس موقعه الوظيفي؟',CONTINUE_OPTS,true)}
+      ${fieldCheckbox('finalReco','التوصية النهائية',FINAL_RECO,true)}
+    </div>`}
+  `;
+}
+
+/* تحويل كل إجابات المقياس (1-5) الموجودة في التقييم إلى درجة واحدة من 100 */
+function scaleScoreOutOf100(collected){
+  const vals = Object.keys(collected)
+    .filter(k => /__\d+$/.test(k))
+    .map(k => collected[k])
+    .filter(v => typeof v === 'number');
+  if(vals.length === 0) return null;
+  const avg = vals.reduce((a,b)=>a+b,0) / vals.length;
+  return Math.round((avg/5*100) * 100) / 100;
+}
+
+/* يحدد إلى أي شيت/عمود يجب أن تُرسل هذه الدرجة بناءً على القسم والمقيّم الحالي */
+function buildSheetPayload(sectionKey, employeeName, score){
+  const u = state.currentUser;
+  if(!employeeName) return { sheetTarget:'raw_only', employeeName:'', role:u.panelRole||u.role, score };
+  const cat = empCategory(employeeName);
+  switch(sectionKey){
+    case 'projects': case 'media': case 'field': case 'psychosocial':
+      return { sheetTarget:'regular', employeeName, department:DEPT_LABEL[sectionKey], role:'manager', score };
+    case 'regularPanel':
+      return { sheetTarget:'regular', employeeName, department:DEPT_LABEL[cat]||'', role:u.panelRole, score };
+    case 'hr':
+      if(cat==='projects'||cat==='media'||cat==='field'||cat==='psychosocial'){
+        return { sheetTarget:'regular', employeeName, department:DEPT_LABEL[cat], role:'admin', score };
+      }
+      return { sheetTarget:'raw_only', employeeName, role:'admin', score };
+    case 'triple':
+      return { sheetTarget:'triple', employeeName, role:u.panelRole, score };
+    case 'hazem':
+      return { sheetTarget:'hazem_eval', employeeName, role:u.panelRole, score };
+    default:
+      return { sheetTarget:'raw_only', employeeName, role:u.panelRole||u.role, score };
+  }
+}
+
+/* خريطة عنوان كل مجموعة أسئلة مقياس (1-5) إلى نص الأسئلة الفعلي، لاستخدامها عند تصدير الإجابات بالتفصيل */
+const SPECIAL_BY_SECTION = {
+  projects: SPECIAL_QUESTIONS.projects,
+  psychosocial: SPECIAL_QUESTIONS.psychosocial,
+  triple: SPECIAL_QUESTIONS.triple,
+  managers: SPECIAL_QUESTIONS.managers,
+  hazem: SPECIAL_QUESTIONS.managers
+};
+function resolveQuestionArray(prefix, sectionKey){
+  if(prefix === 'general') return GENERAL_Q;
+  if(prefix === 'hr') return HR_Q;
+  if(prefix === 'me') return ME_Q;
+  if(prefix === 'managerEval') return SPECIAL_QUESTIONS.managers;
+  if(prefix === 'mediaSpecial') return SPECIAL_QUESTIONS.media;
+  if(prefix === 'fieldSpecial') return SPECIAL_QUESTIONS.field;
+  if(prefix.indexOf('special_') === 0) return SPECIAL_QUESTIONS[prefix.slice(8)] || null;
+  if(prefix === 'special') return SPECIAL_BY_SECTION[sectionKey] || null;
+  return null;
+}
+
+/* تسميات الحقول غير المبنية على مقياس 1-5 (نصوص/اختيارات/مربعات) لعرضها بشكل مقروء في شيت التفاصيل */
+const FIELD_LABELS = {
+  strengths:'أبرز نقاط القوة لدى الموظف', improve:'أبرز الجوانب التي تحتاج إلى تحسين',
+  continueRole:'هل توصي باستمرار الموظف في نفس موقعه الوظيفي؟', finalReco:'التوصية النهائية',
+  department:'الدائرة / القسم', employeeTitle:'المسمى الوظيفي',
+  attendanceNote:'هل توجد ملاحظات دوام أو غياب؟', warnings:'هل توجد إنذارات أو ملاحظات إدارية موثقة؟',
+  adminNoteDetail:'توضيح الملاحظات الإدارية', hrReco:'التوصية الإدارية',
+  gapNote:'هل توجد فجوات بين الخطة والتنفيذ؟', gapDetail:'توضيح الفجوات', meReco:'توصية المتابعة والتقييم',
+  reviewType:'نوع المراجعة', logicalResult:'هل نتيجة التقييم منطقية؟', biasCheck:'هل توجد مبالغة أو انخفاض غير مبرر؟',
+  approveResult:'هل تعتمد الإدارة العليا النتيجة؟', approvedAction:'الإجراء المعتمد من الإدارة العليا',
+  topNotes:'ملاحظات الإدارة العليا', reviewEmployee:'اسم الموظف محل المراجعة أو الاعتماد'
+};
+
+/* يحوّل كل إجابة في "collected" إلى زوج {question, answer} مقروء، لتخزين كل سؤال وإجابته في الشيت */
+function buildAnswerPairs(sectionKey, collected){
+  const pairs = [];
+  Object.keys(collected).forEach(key=>{
+    if(key === 'employeeName') return;
+    const m = key.match(/^(.+)__(\d+)$/);
+    if(m){
+      const arr = resolveQuestionArray(m[1], sectionKey);
+      const idx = Number(m[2]);
+      const qText = (arr && arr[idx]) ? arr[idx] : key;
+      pairs.push({ question: qText, answer: collected[key] });
+      return;
+    }
+    let val = collected[key];
+    if(Array.isArray(val)) val = val.join('، ');
+    pairs.push({ question: FIELD_LABELS[key] || key, answer: val });
+  });
+  return pairs;
+}
+
+async function sendToSheet(payload){
+  if(!GAS_WEB_APP_URL || GAS_WEB_APP_URL.startsWith('PASTE_')) return;
+  try{
+    const res = await fetch(GAS_WEB_APP_URL, {
+      method:'POST',
+      headers:{'Content-Type':'text/plain;charset=utf-8'},
+      body: JSON.stringify(payload)
+    });
+    const text = await res.text();
+    console.log('[sendToSheet] status:', res.status, 'response:', text);
+    if(!res.ok || !/"ok"\s*:\s*true/.test(text)){
+      console.error('[sendToSheet] لم يتم التخزين على الشيت كما هو متوقع. تحقق من رابط النشر وصلاحياته. الرد:', text);
+    }
+  }catch(e){
+    console.error('[sendToSheet] فشل الاتصال بالشيت:', e);
+  }
+}
+
+async function saveAndFinish(sectionKey, collected){
+  const u = state.currentUser;
+  const employeeName = collected.employeeName;
+  const payload = {
+    section: sectionKey,
+    evaluator: { idNumber: u.idNumber, name: u.name, title: u.title },
+    answers: collected,
+    submittedAt: new Date().toISOString()
+  };
+  await persistResponse(payload);
+
+  const score = scaleScoreOutOf100(collected);
+  const sheetPayload = buildSheetPayload(sectionKey, employeeName, score);
+  sheetPayload.evaluatorId = u.idNumber;
+  sheetPayload.evaluatorName = u.name;
+  sheetPayload.sectionKey = sectionKey;
+  sheetPayload.answers = buildAnswerPairs(sectionKey, collected);
+  await sendToSheet(sheetPayload);
+
+  if(employeeName){
+    await addExcluded(u.idNumber, sectionKey, employeeName);
+    state.lastSubmission = { sectionKey, evaluatorId: u.idNumber, employeeName };
+  } else {
+    state.lastSubmission = null;
+  }
+  state.page='done';
+  updateProgress();
+  renderPage();
+}
+
+function wireBackToHome(){
+  const btn = document.getElementById('backBtn');
+  if(!btn) return;
+  btn.addEventListener('click', ()=>{
+    if(state.currentUser && state.currentUser.role==='panelist'){
+      state.page = 'panel_menu';
+    } else {
+      state.page = 'login';
+      state.currentUser = null;
+    }
+    updateProgress();
+    renderPage();
+  });
+}
+
+/* ============================================================
+   PAGE: مدير دائرة المشاريع
+   ============================================================ */
+async function renderProjects(){
+  const available = await filterAvailable(state.currentUser.idNumber, 'projects', EMP.projects);
+  root.innerHTML = evaluationBodyHTML({
+    pageTitle:'تقييم موظفي دائرة المشاريع',
+    pageHelp:'هذا القسم مخصص لتقييم موظفي دائرة المشاريع فقط، ويُعبّأ من قبل مدير دائرة المشاريع.',
+    employeeLabel:'اسم الموظف محل التقييم — دائرة المشاريع',
+    employeeList: available,
+    specialTitle:'التقييم الخاص بدائرة المشاريع',
+    specialQuestions: SPECIAL_QUESTIONS.projects,
+    recommendationTitle:'توصية مدير دائرة المشاريع'
+  }) + navRow(true, true, available.length===0);
+  wireInteractions(root);
+  wireBackToHome();
+  const btn = document.getElementById('nextBtn');
+  if(btn) btn.addEventListener('click', ()=>{
+    if(available.length===0) return;
+    const collected = validateAndCollect(root);
+    if(!collected) return;
+    saveAndFinish('projects', collected);
+  });
+}
+
+/* ============================================================
+   PAGE: مدير الإعلام — موظفي الإعلام + الميداني بصفحة مدمجة
+   ============================================================ */
+async function renderMediaField(){
+  const availMedia = await filterAvailable(state.currentUser.idNumber, 'media', EMP.media);
+  const availField = await filterAvailable(state.currentUser.idNumber, 'field', EMP.field);
+  const hasAny = availMedia.length>0 || availField.length>0;
+
+  if(!hasAny){
+    root.innerHTML = `
+      <div class="card">
+        ${welcomeTag()}
+        <div class="card-title"><span class="dot"></span>تقييم موظفي دائرة العلاقات العامة والإعلام والموظفين الميدانيين</div>
+        <div class="card-help good">تم تقييم جميع موظفي الإعلام والموظفين الميدانيين بالفعل. لا يوجد أحد متبقٍ للتقييم حالياً.</div>
+      </div>${navRow(false, true, true)}`;
+    wireBackToHome();
+    return;
+  }
+
+  root.innerHTML = `
+    <div class="card">
+      ${welcomeTag()}
+      <div class="card-title"><span class="dot"></span>تقييم موظفي دائرة العلاقات العامة والإعلام والموظفين الميدانيين</div>
+      <div class="card-help warn">اختر الموظف وسيتم تعديل الأسئلة الخاصة تلقائياً حسب نوعه.</div>
+      <div class="field" data-key="employeeName">
+        <label class="q">اسم الموظف محل التقييم<span class="req">*</span></label>
+        <select data-field="employeeName" id="empSelect">
+          <option value="">— اختر —</option>
+          ${availMedia.length>0 ? `<optgroup label="دائرة العلاقات العامة والإعلام">
+            ${availMedia.map(n=>`<option value="${n}" data-type="media">${n}</option>`).join('')}
+          </optgroup>` : ''}
+          ${availField.length>0 ? `<optgroup label="الموظفون الميدانيون">
+            ${availField.map(n=>`<option value="${n}" data-type="field">${n}</option>`).join('')}
+          </optgroup>` : ''}
+        </select>
+        <div class="error-msg">يرجى اختيار قيمة.</div>
+      </div>
+      ${fieldAutoTitle('employeeTitle','المسمى الوظيفي للموظف')}
+    </div>
+
+    <div class="card">${scaleGroup('general','أولاً: التقييم العام', GENERAL_Q)}</div>
+
+    <div class="card hidden" id="mediaSpecialCard">
+      ${scaleGroup('mediaSpecial','ثانياً: التقييم الخاص بالإعلام والعلاقات العامة', SPECIAL_QUESTIONS.media)}
+    </div>
+    <div class="card hidden" id="fieldSpecialCard">
+      ${scaleGroup('fieldSpecial','ثانياً: التقييم الخاص بالموظفين الميدانيين', SPECIAL_QUESTIONS.field)}
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="dot"></span>ثالثاً: توصية مدير دائرة العلاقات العامة والإعلام</div>
+      ${fieldText('strengths','أبرز نقاط القوة لدى الموظف',true,'',true)}
+      ${fieldText('improve','أبرز الجوانب التي تحتاج إلى تحسين',true,'',true)}
+      ${fieldRadio('continueRole','هل توصي باستمرار الموظف في نفس موقعه الوظيفي؟',CONTINUE_OPTS,true)}
+      ${fieldCheckbox('finalReco','التوصية النهائية',FINAL_RECO,true)}
+    </div>
+    ${navRow(true, true)}
+  `;
+  wireInteractions(root);
+  wireBackToHome();
+
+  const empSelect = document.getElementById('empSelect');
+  const mediaCard = document.getElementById('mediaSpecialCard');
+  const fieldCard = document.getElementById('fieldSpecialCard');
+  function syncType(){
+    const opt = empSelect.options[empSelect.selectedIndex];
+    const type = opt ? opt.dataset.type : null;
+    mediaCard.classList.toggle('hidden', type !== 'media');
+    fieldCard.classList.toggle('hidden', type !== 'field');
+  }
+  empSelect.addEventListener('change', syncType);
+  syncType();
+
+  document.getElementById('nextBtn').addEventListener('click', ()=>{
+    const collected = validateAndCollect(root);
+    if(!collected) return;
+    const sectionKey = mediaCard.classList.contains('hidden') ? 'field' : 'media';
+    saveAndFinish(sectionKey, collected);
+  });
+}
+
+/* ============================================================
+   PAGE: مديرة الدعم النفسي
+   ============================================================ */
+async function renderPsychosocial(){
+  const available = await filterAvailable(state.currentUser.idNumber, 'psychosocial', EMP.psychosocial);
+  root.innerHTML = evaluationBodyHTML({
+    pageTitle:'تقييم موظفي قسم الدعم النفسي والأنشطة',
+    pageHelp:'هذا القسم مخصص لتقييم موظفي قسم الدعم النفسي والأنشطة فقط.',
+    employeeLabel:'اسم الموظف محل التقييم — قسم الدعم النفسي والأنشطة',
+    employeeList: available,
+    specialTitle:'التقييم الخاص بالدعم النفسي والأنشطة',
+    specialQuestions: SPECIAL_QUESTIONS.psychosocial,
+    recommendationTitle:'توصية مسؤول قسم الدعم النفسي والأنشطة'
+  }) + navRow(true, true, available.length===0);
+  wireInteractions(root);
+  wireBackToHome();
+  const btn = document.getElementById('nextBtn');
+  if(btn) btn.addEventListener('click', ()=>{
+    if(available.length===0) return;
+    const collected = validateAndCollect(root);
+    if(!collected) return;
+    saveAndFinish('psychosocial', collected);
+  });
+}
+
+/* ============================================================
+   PAGE: محمد رياض — شؤون الموظفين (الالتزام الإداري لجميع الموظفين
+   عدا: نفسه، وعدا عماد/منال/حازم)
+   ============================================================ */
+function hrEligibleList(){
+  const excludedAlways = ['محمد رياض محمود سليمان','عماد سليمان عبدالله قاسم','منال صيام','حازم علي حسن عفانة'];
+  return EMP.all.filter(n => !excludedAlways.includes(n));
+}
+
+async function renderHR(){
+  const fullList = hrEligibleList();
+  const available = await filterAvailable(state.currentUser.idNumber, 'hr', fullList);
+  root.innerHTML = `
+    <div class="card">
+      ${welcomeTag()}
+      <div class="card-title"><span class="dot"></span>تقييم الالتزام الإداري وشؤون الموظفين</div>
+      <div class="card-help">يهدف إلى تقييم الالتزام الإداري والدوام والسلوك الوظيفي لكل موظف من واقع السجلات والملاحظات الرسمية.</div>
+      ${fieldSelect('employeeName','اسم الموظف محل التقييم', available, true)}
+      ${available.length>0 ? fieldSelect('department','الدائرة / القسم', DEPTS, true) : ''}
+    </div>
+    ${available.length===0 ? '' : `
+    <div class="card">${scaleGroup('hr','تقييم شؤون الموظفين / الالتزام الإداري', HR_Q)}</div>
+    <div class="card">
+      <div class="card-title"><span class="dot"></span>ملاحظات شؤون الموظفين</div>
+      ${fieldRadio('attendanceNote','هل توجد ملاحظات دوام أو غياب؟',['لا توجد','توجد ملاحظات بسيطة','توجد ملاحظات متكررة','توجد ملاحظات جوهرية'],true)}
+      ${fieldRadio('warnings','هل توجد إنذارات أو ملاحظات إدارية موثقة؟',['لا','نعم'],true)}
+      ${fieldText('adminNoteDetail','توضيح الملاحظات الإدارية إن وجدت',false,'',true)}
+      ${fieldCheckbox('hrReco','التوصية الإدارية',['لا توجد ملاحظات','متابعة التزام','تنبيه شفهي','ملاحظة إدارية','إنذار إداري','إجراء إداري آخر'],true)}
+    </div>`}
+    ${navRow(true, true, available.length===0)}
+  `;
+  wireInteractions(root);
+  document.getElementById('backBtn').addEventListener('click', ()=>{ state.page='login'; state.currentUser=null; updateProgress(); renderPage(); });
+  const btn = document.getElementById('nextBtn');
+  if(btn) btn.addEventListener('click', ()=>{
+    if(available.length===0) return;
+    const collected = validateAndCollect(root);
+    if(!collected) return;
+    saveAndFinish('hr', collected);
+  });
+}
+
+/* ============================================================
+   PANELIST MENU (عماد قاسم / منال صيام / حازم عفانة)
+   ============================================================ */
+function panelistMenuItems(){
+  const u = state.currentUser;
+  const items = [
+    {id:'triple', label:'تقييم المالية / الموظفين والقانونية / السكرتاريا', desc:'عبد الرحمن صيام، محمد رياض سليمان، ياسمين خلف — تقييم ثلاثي مستقل لكل مقيّم'},
+  ];
+  if(u.canEvalRegular){
+    items.push({id:'regular', label:'تقييم الموظفين العاديين', desc:'تقييم كامل (عام + خاص بالدائرة) لكل موظفي المشاريع والإعلام والميداني والدعم النفسي — يمثل نسبتك (20%) من معدل كل موظف'});
+  }
+  if(u.canEvalManagers){
+    items.push({id:'managers', label:'تقييم مدراء الدوائر', desc:'إياد، أحمد عجور، سناء، وفاء'});
+  } else {
+    items.push({id:'hazem', label:'تقييم المدير الإداري', desc:'تقييم حازم علي حسن عفانة'});
+  }
+  items.push({id:'me', label:'المتابعة والتقييم', desc:'تقييم الإنجاز والتوثيق والمخرجات لأي موظف'});
+  items.push({id:'approval', label:'اعتماد الإدارة العليا / لجنة الاعتماد', desc:'مراجعة واعتماد النتائج النهائية'});
+  return items;
+}
+
+function renderPanelMenu(){
+  const items = panelistMenuItems();
+  root.innerHTML = `
+    <div class="card">
+      ${welcomeTag()}
+      <div class="card-title"><span class="dot"></span>اختر القسم الذي تريد تعبئته الآن</div>
+      <div class="card-help good">يمكنك تعبئة أي من الأقسام التالية، ويمكنك تكرار الدخول لتعبئة أقسام أخرى لاحقاً.</div>
+      <div class="role-grid" data-role-group>
+        ${items.map(r=>`
+          <div class="role-card" data-role="${r.id}">
+            <div class="rt">${r.label}</div>
+            <div class="rd">${r.desc}</div>
+          </div>`).join('')}
+      </div>
+    </div>
+    <div class="nav-row">
+      <button class="btn-ghost" id="logoutBtn">تسجيل خروج</button>
+      <button class="btn-primary" id="nextBtn">التالي ←</button>
+    </div>
+  `;
+  wireInteractions(root);
+  document.getElementById('logoutBtn').addEventListener('click', logout);
+  document.getElementById('nextBtn').addEventListener('click', ()=>{
+    const chosen = root.querySelector('.role-card.checked');
+    if(!chosen){
+      const grid = root.querySelector('.role-grid');
+      grid.style.outline='2px solid var(--danger)'; grid.style.borderRadius='10px';
+      grid.scrollIntoView({behavior:'smooth',block:'center'});
+      return;
+    }
+    state.panelMenuChoice = chosen.dataset.role;
+    state.page = 'panel_' + state.panelMenuChoice;
+    persistSession();
+    updateProgress();
+    renderPage();
+  });
+}
+
+/* ---- Panelist: triple evaluation (المالية/الموظفين والقانونية/السكرتاريا) ---- */
+async function renderPanelTriple(){
+  const u = state.currentUser;
+  const available = await filterAvailable(u.idNumber, 'triple', EMP.triple);
+  root.innerHTML = evaluationBodyHTML({
+    pageTitle:'تقييم المالية / الموظفين والقانونية / السكرتاريا',
+    pageHelp:'تقييم مستقل لكل من عبد الرحمن صيام، محمد رياض سليمان، وياسمين خلف. تقييمك هنا مستقل تماماً عن تقييم الجهات الأخرى لنفس الموظف، ويُحسب المعدل بينها لاحقاً.',
+    employeeLabel:'اسم الموظف محل التقييم',
+    employeeList: available,
+    specialTitle:'التقييم الخاص بالمسؤوليات الوظيفية',
+    specialQuestions: SPECIAL_QUESTIONS.triple,
+    recommendationTitle:'توصية لجنة التقييم'
+  }) + navRow(true, true, available.length===0);
+  wireInteractions(root);
+  document.getElementById('backBtn').addEventListener('click', ()=>{ state.page='panel_menu'; updateProgress(); renderPage(); });
+  const btn = document.getElementById('nextBtn');
+  if(btn) btn.addEventListener('click', ()=>{
+    if(available.length===0) return;
+    const collected = validateAndCollect(root);
+    if(!collected) return;
+    saveAndFinish('triple', collected);
+  });
+}
+
+/* ---- Panelist: تقييم الموظفين العاديين (حازم وعماد فقط — 20%+20%) ---- */
+async function renderPanelRegular(){
+  const u = state.currentUser;
+  const fullList = [...EMP.projects, ...EMP.media, ...EMP.field, ...EMP.psychosocial];
+  const available = await filterAvailable(u.idNumber, 'regularPanel', fullList);
+
+  if(available.length===0){
+    root.innerHTML = `
+      <div class="card">
+        ${welcomeTag()}
+        <div class="card-title"><span class="dot"></span>تقييم الموظفين العاديين</div>
+        <div class="card-help good">تم تقييم جميع الموظفين العاديين بالفعل. لا يوجد أحد متبقٍ للتقييم حالياً.</div>
+      </div>${navRow(false, true, true)}`;
+    document.getElementById('backBtn').addEventListener('click', ()=>{ state.page='panel_menu'; updateProgress(); renderPage(); });
+    return;
+  }
+
+  const groups = [
+    {key:'projects', label:'دائرة المشاريع', list: await filterAvailable(u.idNumber,'regularPanel', EMP.projects)},
+    {key:'media', label:'دائرة العلاقات العامة والإعلام', list: await filterAvailable(u.idNumber,'regularPanel', EMP.media)},
+    {key:'field', label:'الموظفون الميدانيون', list: await filterAvailable(u.idNumber,'regularPanel', EMP.field)},
+    {key:'psychosocial', label:'قسم الدعم النفسي والأنشطة', list: await filterAvailable(u.idNumber,'regularPanel', EMP.psychosocial)}
+  ];
+
+  root.innerHTML = `
+    <div class="card">
+      ${welcomeTag()}
+      <div class="card-title"><span class="dot"></span>تقييم الموظفين العاديين</div>
+      <div class="card-help warn">اختر الموظف وسيتم تعديل الأسئلة الخاصة تلقائياً حسب دائرته. هذا التقييم يمثل نسبتك (20%) ضمن المعدل النهائي للموظف.</div>
+      <div class="field" data-key="employeeName">
+        <label class="q">اسم الموظف محل التقييم<span class="req">*</span></label>
+        <select data-field="employeeName" id="empSelect">
+          <option value="">— اختر —</option>
+          ${groups.filter(g=>g.list.length>0).map(g=>`
+            <optgroup label="${g.label}">
+              ${g.list.map(n=>`<option value="${n}" data-cat="${g.key}">${n}</option>`).join('')}
+            </optgroup>`).join('')}
+        </select>
+        <div class="error-msg">يرجى اختيار قيمة.</div>
+      </div>
+      ${fieldAutoTitle('employeeTitle','المسمى الوظيفي للموظف')}
+    </div>
+
+    <div class="card">${scaleGroup('general','أولاً: التقييم العام', GENERAL_Q)}</div>
+
+    ${groups.map(g=>`
+    <div class="card hidden" id="specialCard_${g.key}">
+      ${scaleGroup('special_'+g.key, 'ثانياً: التقييم الخاص بـ'+g.label, SPECIAL_QUESTIONS[g.key])}
+    </div>`).join('')}
+
+    <div class="card">
+      <div class="card-title"><span class="dot"></span>ثالثاً: التوصية</div>
+      ${fieldText('strengths','أبرز نقاط القوة لدى الموظف',true,'',true)}
+      ${fieldText('improve','أبرز الجوانب التي تحتاج إلى تحسين',true,'',true)}
+      ${fieldRadio('continueRole','هل توصي باستمرار الموظف في نفس موقعه الوظيفي؟',CONTINUE_OPTS,true)}
+      ${fieldCheckbox('finalReco','التوصية النهائية',FINAL_RECO,true)}
+    </div>
+    ${navRow(true, true)}
+  `;
+  wireInteractions(root);
+  document.getElementById('backBtn').addEventListener('click', ()=>{ state.page='panel_menu'; updateProgress(); renderPage(); });
+
+  const empSelect = document.getElementById('empSelect');
+  function syncCategory(){
+    const opt = empSelect.options[empSelect.selectedIndex];
+    const cat = opt ? opt.dataset.cat : null;
+    groups.forEach(g=>{
+      document.getElementById('specialCard_'+g.key).classList.toggle('hidden', cat !== g.key);
+    });
+  }
+  empSelect.addEventListener('change', syncCategory);
+  syncCategory();
+
+  document.getElementById('nextBtn').addEventListener('click', ()=>{
+    const collected = validateAndCollect(root);
+    if(!collected) return;
+    saveAndFinish('regularPanel', collected);
+  });
+}
+
+/* ---- Panelist: managers evaluation (حازم فقط) ---- */
+async function renderPanelManagers(){
+  const u = state.currentUser;
+  const available = await filterAvailable(u.idNumber, 'managers', EMP.managersRegular);
+  root.innerHTML = evaluationBodyHTML({
+    pageTitle:'تقييم مدراء الدوائر',
+    pageHelp:'تقييم مدراء الدوائر العاديين من قبل المدير الإداري.',
+    employeeLabel:'اسم المدير محل التقييم',
+    employeeList: available,
+    specialTitle:'التقييم الخاص بالمدراء',
+    specialQuestions: SPECIAL_QUESTIONS.managers,
+    recommendationTitle:'توصية المدير الإداري'
+  }) + navRow(true, true, available.length===0);
+  wireInteractions(root);
+  document.getElementById('backBtn').addEventListener('click', ()=>{ state.page='panel_menu'; updateProgress(); renderPage(); });
+  const btn = document.getElementById('nextBtn');
+  if(btn) btn.addEventListener('click', ()=>{
+    if(available.length===0) return;
+    const collected = validateAndCollect(root);
+    if(!collected) return;
+    saveAndFinish('managers', collected);
+  });
+}
+
+/* ---- Panelist: تقييم المدير الإداري (حازم) — يظهر فقط لعماد ومنال ---- */
+async function renderPanelHazem(){
+  const u = state.currentUser;
+  const available = await filterAvailable(u.idNumber, 'hazem', ['حازم علي حسن عفانة']);
+  root.innerHTML = evaluationBodyHTML({
+    pageTitle:'تقييم المدير الإداري',
+    pageHelp:'تقييم حازم علي حسن عفانة، المدير الإداري للجمعية.',
+    employeeLabel:'اسم المدير محل التقييم',
+    employeeList: available,
+    specialTitle:'التقييم الخاص بالمدراء',
+    specialQuestions: SPECIAL_QUESTIONS.managers,
+    recommendationTitle:'التوصية بشأن المدير الإداري',
+    emptyMsg:'تم تقييم المدير الإداري بالفعل من قبلك.'
+  }) + navRow(true, true, available.length===0);
+  wireInteractions(root);
+  document.getElementById('backBtn').addEventListener('click', ()=>{ state.page='panel_menu'; updateProgress(); renderPage(); });
+  const btn = document.getElementById('nextBtn');
+  if(btn) btn.addEventListener('click', ()=>{
+    if(available.length===0) return;
+    const collected = validateAndCollect(root);
+    if(!collected) return;
+    saveAndFinish('hazem', collected);
+  });
+}
+
+/* ---- Panelist: M&E section ---- */
+async function renderPanelME(){
+  const u = state.currentUser;
+  const fullList = EMP.all.filter(n => n !== 'عماد سليمان عبدالله قاسم' && n !== 'منال صيام');
+  const available = await filterAvailable(u.idNumber, 'me', fullList);
+  root.innerHTML = `
+    <div class="card">
+      ${welcomeTag()}
+      <div class="card-title"><span class="dot"></span>تقييم الإنجاز والتوثيق والمخرجات</div>
+      <div class="card-help">يهدف إلى تقييم مدى تحقق الإنجاز، جودة التوثيق، دقة التقارير، ومدى ارتباط أداء الموظف بالمخرجات والمؤشرات.</div>
+      ${fieldSelect('employeeName','اسم الموظف محل التقييم', available, true)}
+      ${available.length>0 ? fieldSelect('department','الدائرة / القسم', DEPTS, true) : ''}
+    </div>
+    ${available.length===0 ? '' : `
+    <div class="card">${scaleGroup('me','تقييم المتابعة والتقييم / الإنجاز والتوثيق والمخرجات', ME_Q)}</div>
+    <div class="card">
+      <div class="card-title"><span class="dot"></span>ملاحظات المتابعة والتقييم</div>
+      ${fieldRadio('gapNote','هل توجد فجوات بين الخطة والتنفيذ تخص عمل الموظف؟',['لا توجد','توجد فجوات بسيطة','توجد فجوات متوسطة','توجد فجوات جوهرية'],true)}
+      ${fieldText('gapDetail','توضيح الفجوات إن وجدت',false,'',true)}
+      ${fieldCheckbox('meReco','توصية المتابعة والتقييم',['الإنجاز موثق ومقبول','يحتاج إلى تحسين التوثيق','يحتاج إلى تحسين جودة التقارير','يحتاج إلى متابعة إنجاز','توجد فجوات جوهرية تحتاج إلى تدخل إداري'],true)}
+    </div>`}
+    ${navRow(true, true, available.length===0)}
+  `;
+  wireInteractions(root);
+  document.getElementById('backBtn').addEventListener('click', ()=>{ state.page='panel_menu'; updateProgress(); renderPage(); });
+  const btn = document.getElementById('nextBtn');
+  if(btn) btn.addEventListener('click', ()=>{
+    if(available.length===0) return;
+    const collected = validateAndCollect(root);
+    if(!collected) return;
+    saveAndFinish('me', collected);
+  });
+}
+
+/* ---- Panelist: Approval section ---- */
+async function renderPanelApproval(){
+  const u = state.currentUser;
+  const fullList = EMP.all.filter(n => n !== 'عماد سليمان عبدالله قاسم' && n !== 'منال صيام');
+  const available = await filterAvailable(u.idNumber, 'approval', fullList);
+  root.innerHTML = `
+    <div class="card">
+      ${welcomeTag()}
+      <div class="card-title"><span class="dot"></span>اعتماد الإدارة العليا ومراجعة النتائج</div>
+      <div class="card-help">مراجعة النتائج النهائية واعتمادها، وتقييم المدراء والمسؤولين أو الحالات الخاصة عند الحاجة.</div>
+      ${fieldSelect('reviewEmployee','اسم الموظف محل المراجعة أو الاعتماد', available, true)}
+      ${available.length>0 ? `
+      ${fieldRadio('reviewType','نوع المراجعة',['مراجعة نتيجة موظف عادي','تقييم مدير دائرة / مسؤول قسم','مراجعة حالة خاصة','اعتماد نهائي للنتيجة'],true)}
+      ${fieldSelect('department','الدائرة / القسم', DEPTS, true)}` : ''}
+    </div>
+    ${available.length===0 ? '' : `
+    <div class="card hidden" id="managerScaleCard">
+      ${scaleGroup('managerEval','تقييم المدراء والمسؤولين عند الحاجة', SPECIAL_QUESTIONS.managers, 'يُستخدم هذا الجزء فقط عند تقييم مدير دائرة أو مسؤول قسم.')}
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="dot"></span>مراجعة النتيجة النهائية</div>
+      ${fieldRadio('logicalResult','هل تبدو نتيجة التقييم منطقية ومتوافقة مع مستوى أداء الموظف؟',['نعم','تحتاج إلى مراجعة','لا'],true)}
+      ${fieldRadio('biasCheck','هل توجد مبالغة أو انخفاض غير مبرر في التقييم؟',['لا','نعم، توجد مبالغة','نعم، يوجد انخفاض غير مبرر'],true)}
+      ${fieldRadio('approveResult','هل تعتمد الإدارة العليا النتيجة كما وردت؟',['نعم','لا','تعتمد بعد التعديل','يطلب توضيح من المسؤول المباشر'],true)}
+      ${fieldCheckbox('approvedAction','الإجراء المعتمد من الإدارة العليا',['اعتماد النتيجة كما هي','تعديل النتيجة بعد المراجعة','طلب توضيح من المسؤول المباشر','إحالة الموظف إلى خطة تحسين أداء','توجيه كتاب شكر','توجيه ملاحظة إدارية','إعادة توزيع مهام','تدريب وتطوير','إجراء إداري آخر'],true)}
+      ${fieldText('topNotes','ملاحظات الإدارة العليا',false,'',true)}
+    </div>`}
+    ${navRow(true, true, available.length===0)}
+  `;
+  wireInteractions(root);
+  document.getElementById('backBtn').addEventListener('click', ()=>{ state.page='panel_menu'; updateProgress(); renderPage(); });
+
+  const mgrCard = document.getElementById('managerScaleCard');
+  if(mgrCard){
+    function syncManagerVisibility(){
+      const checked = root.querySelector('input[name="reviewType"]:checked');
+      const val = checked ? checked.value : null;
+      mgrCard.classList.toggle('hidden', val!=='تقييم مدير دائرة / مسؤول قسم');
+    }
+    root.querySelectorAll('input[name="reviewType"]').forEach(r=>r.addEventListener('change',syncManagerVisibility));
+    syncManagerVisibility();
+  }
+
+  const btn = document.getElementById('nextBtn');
+  if(btn) btn.addEventListener('click', ()=>{
+    if(available.length===0) return;
+    // map reviewEmployee -> employeeName for consistent exclusion tracking
+    const collected = validateAndCollect(root);
+    if(!collected) return;
+    collected.employeeName = collected.reviewEmployee;
+    saveAndFinish('approval', collected);
+  });
+}
+
+/* ============================================================
+   ROUTER
+   ============================================================ */
+function renderPage(){
+  document.getElementById('successScreen').classList.add('hidden');
+  root.classList.remove('hidden');
+
+  switch(state.page){
+    case 'login': renderLogin(); break;
+    case 'projects': renderProjects(); break;
+    case 'media_field': renderMediaField(); break;
+    case 'psychosocial': renderPsychosocial(); break;
+    case 'hr': renderHR(); break;
+
+    case 'panel_menu': renderPanelMenu(); break;
+    case 'panel_triple': renderPanelTriple(); break;
+    case 'panel_regular': renderPanelRegular(); break;
+    case 'panel_managers': renderPanelManagers(); break;
+    case 'panel_hazem': renderPanelHazem(); break;
+    case 'panel_me': renderPanelME(); break;
+    case 'panel_approval': renderPanelApproval(); break;
+
+    case 'done': renderDone(); break;
+  }
+}
+
+function renderDone(){
+  root.classList.add('hidden');
+  document.getElementById('successScreen').classList.remove('hidden');
+
+  const undoBtn = document.getElementById('undoLastBtn');
+  if(state.lastSubmission){
+    undoBtn.classList.remove('hidden');
+    undoBtn.style.display='inline-flex';
+    undoBtn.onclick = async ()=>{
+      const ls = state.lastSubmission;
+      await removeExcluded(ls.evaluatorId, ls.sectionKey, ls.employeeName);
+      state.lastSubmission = null;
+      // return to the same evaluation page so the user can redo it correctly
+      state.page = pageKeyForCurrentUser();
+      updateProgress();
+      renderPage();
+    };
+  } else {
+    undoBtn.style.display='none';
+  }
+
+  const continueBtn = document.getElementById('continueEvalBtn');
+  continueBtn.onclick = ()=>{
+    state.lastSubmission = null;
+    state.page = pageKeyForCurrentUser();
+    updateProgress();
+    renderPage();
+  };
+}
+
+function logout(){
+  clearSession();
+  state = { page:'login', currentUser:null, panelMenuChoice:null, lastSubmission:null };
+  document.getElementById('successScreen').classList.add('hidden');
+  updateProgress();
+  renderPage();
+}
+
+/* ============================================================
+   PROGRESS BAR
+   ============================================================ */
+const STEP_LABELS = {
+  login:'تسجيل الدخول',
+  projects:'تقييم موظفي دائرة المشاريع', media_field:'تقييم موظفي الإعلام والميداني',
+  psychosocial:'تقييم الدعم النفسي والأنشطة', hr:'تقييم الالتزام الإداري لشؤون الموظفين',
+  panel_menu:'اختيار قسم التقييم', panel_triple:'تقييم المالية / الموظفين / السكرتاريا',
+  panel_regular:'تقييم الموظفين العاديين',
+  panel_managers:'تقييم مدراء الدوائر', panel_hazem:'تقييم المدير الإداري', panel_me:'المتابعة والتقييم',
+  panel_approval:'اعتماد الإدارة العليا', done:'تم الإرسال'
+};
+function updateProgress(){
+  const pct = state.page==='login' ? 0 : state.page==='done' ? 100 : (state.page==='panel_menu' ? 30 : 65);
+  document.getElementById('progressFill').style.width = pct+'%';
+  document.getElementById('progressText').textContent = STEP_LABELS[state.page] || '';
+  document.getElementById('progressPct').textContent = pct+'%';
+}
+
+/* ============================================================
+   PERSISTENCE OF FULL RESPONSES (separate from exclusion tracking)
+   ============================================================ */
+let memoryResponses = [];
+async function persistResponse(payload){
+  memoryResponses.push(payload);
+  try{
+    if (window.storage && typeof window.storage.set === 'function'){
+      const key = 'eval_response_' + Date.now() + '_' + Math.random().toString(36).slice(2,7);
+      await window.storage.set(key, JSON.stringify(payload), true);
+    }
+  }catch(e){ /* storage not available — kept in memory only */ }
+}
+
+/* ============================================================
+   INIT
+   ============================================================ */
+restoreSession();
+document.getElementById('progressWrap').classList.toggle('hidden', state.page==='login');
+updateProgress();
+renderPage();
+</script>
+</body>
+</html>
